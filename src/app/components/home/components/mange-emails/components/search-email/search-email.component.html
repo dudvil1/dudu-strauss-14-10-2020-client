@@ -1,0 +1,25 @@
+<div class="search-email-container">
+  <input
+  [(ngModel)]="searchForm"
+    #search
+    class="form-control"
+    placeholder="Search"
+    (keyup)="onSearching()"
+  />
+  <button *ngIf="searchForm" type="button" class="btn btn-primary btn-sm" (click)="clearSearch()">
+    Clear
+  </button>
+</div>
+
+<table *ngIf="searchEmails.length !== 0" class="table table-hover">
+  <tr *ngFor="let item of searchEmails" (click)="readMessege(item)">
+    <div class="email-details-container">
+      <td>{{ item.sender }}</td>
+      <td>{{ item.reciver }}</td>
+      <td>{{ item.subject }}</td>
+      <td>{{ item.cretionDate | date }}</td>
+    </div>
+    <p *ngIf="item.isReadingMessage">{{ item.messege }}</p>
+  </tr>
+</table>
+

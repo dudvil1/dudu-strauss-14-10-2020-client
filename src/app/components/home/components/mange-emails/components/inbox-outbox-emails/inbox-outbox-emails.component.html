@@ -1,0 +1,19 @@
+<table *ngIf="inboxOutboxEmails.length !== 0" class="table table-hover">
+  <tr *ngFor="let item of inboxOutboxEmails" (click)="readMessege(item)">
+    <div class="email-details-container">
+      <td>{{ item[key] }}</td>
+      <td>{{ item.subject }}</td>
+      <td>{{ item.cretionDate | date }}</td>
+      <td>
+        <i
+          class="far fa-trash-alt fa-lg text-danger"
+          (click)="onDelete(item._id)"
+        ></i>
+      </td>
+    </div>
+    <p *ngIf="item.isReadingMessage">{{ item.messege }}</p>
+  </tr>
+</table>
+<div *ngIf="inboxOutboxEmails.length === 0">
+  no emails yet, maybe its time to get one
+</div>
